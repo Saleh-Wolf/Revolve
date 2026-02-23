@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="utf-8">
+    <title>@yield('title', 'Revolve - Personal Magazine blog Template')</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- theme meta -->
+    <meta name="theme-name" content="revolve" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
+    <!-- THEME CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/themify/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/slick-carousel/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/slick-carousel/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/owl-carousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/owl-carousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/magnific-popup/magnific-popup.css') }}">
+
+    <!-- main stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+     @stack('styles')
+</head>
+<body>
+
+@include('partials.navbar')
+{{-- هنا بيتحط محتوى كل صفحة --}}
+@include('partials.search-overlay')
+
+@yield('content')
+
+@include('partials.footer')
+<!-- THEME JS -->
+<script src="{{ asset('plugins/jquery/jquery.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/popper.min.js') }}"></script>
+<script src="{{ asset('plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('plugins/slick-carousel/slick.min.js') }}"></script>
+<script src="{{ asset('plugins/magnific-popup/magnific-popup.js') }}"></script>
+<script src="{{ asset('plugins/instafeed-js/instafeed.min.js') }}"></script>
+
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="{{ asset('plugins/google-map/gmap.js') }}"></script>
+
+<!-- main js -->
+<script src="{{ asset('js/custom.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.querySelector('.search-toggle-btn');
+    const dropdown  = document.querySelector('.search-dropdown');
+    const closeBtn  = document.querySelector('.close-search');
+
+    if (!toggleBtn || !dropdown || !closeBtn) {
+        console.log('Search dropdown elements missing', {toggleBtn, dropdown, closeBtn});
+        return;
+    }
+
+    toggleBtn.addEventListener('click', function () {
+        dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+    });
+
+    closeBtn.addEventListener('click', function () {
+        dropdown.style.display = 'none';
+    });
+});
+</script>
+@stack('scripts')
+
+</body>
+</html>
